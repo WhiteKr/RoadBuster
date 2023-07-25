@@ -1,0 +1,19 @@
+{
+  "name": "roadbuster",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "setcmd": "tsc && node dist/deploy-commands.js",
+    "start": "npm run setcmd && node dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.11.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.45.0"
+  }
+}
