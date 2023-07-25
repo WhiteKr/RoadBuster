@@ -7,19 +7,17 @@ const client: Client<boolean> = new Client({ intents: [GatewayIntentBits.Guilds]
 
 client.commands = new Collection();
 
-// const folderPath: string = path.join(__dirname, 'commands');
-// const commandFiles: string[] = fs.readdirSync(folderPath).filter(file => file.endsWith('.js'));
-
-const foldersPath = path.join(__dirname, 'commands');
-const commandFolders = fs.readdirSync(foldersPath);
+const foldersPath: string = path.join(__dirname, 'commands');
+const commandFolders: string[] = fs.readdirSync(foldersPath);
 
 for (const folder of commandFolders) {
-    const commandsPath = path.join(foldersPath, folder);
-    const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+    const commandsPath: string = path.join(foldersPath, folder);
+    const commandFiles: string[] = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+
     for (const file of commandFiles) {
-        const filePath = path.join(commandsPath, file);
+        const filePath: string = path.join(commandsPath, file);
         const command = require(filePath);
-        // Set a new item in the Collection with the key as the command name and the value as the exported module
+
         if ('data' in command && 'execute' in command) {
             client.commands.set(command.data.name, command);
         } else {
@@ -46,6 +44,7 @@ client.on(Events.InteractionCreate, async (interaction: Interaction<CacheType>) 
         await command.execute(interaction);
     } catch (error) {
         console.error(error);
+
         if (interaction.replied || interaction.deferred) {
             await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
         } else {
