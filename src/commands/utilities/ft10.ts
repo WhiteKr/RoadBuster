@@ -1,4 +1,5 @@
 import { CacheType, Embed, EmbedBuilder, Interaction, SlashCommandBuilder, SlashCommandNumberOption, SlashCommandUserOption, User } from 'discord.js';
+// import { mods } from '../../config.json';
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -20,10 +21,13 @@ module.exports = {
             option
                 .setName('score')
                 .setDescription('Score of the loser')
+                .setMinValue(0)
+                .setMaxValue(10)
                 .setRequired(true)
         ),
     async execute(interaction: Interaction<CacheType>) {
         if (!interaction.isChatInputCommand()) return;
+        // if (!mods.includes(interaction.user.id)) return;
 
         const winner: User | null = interaction.options.getUser('winner');
         const loser: User | null = interaction.options.getUser('loser');
