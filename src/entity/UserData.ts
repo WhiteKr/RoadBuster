@@ -1,17 +1,15 @@
 import { Column, Entity, ObjectId, ObjectIdColumn } from 'typeorm';
 import { Ft10 } from './Ft10';
+import { User } from 'discord.js';
 
 @Entity()
-export class User {
+export class UserData {
 
     @ObjectIdColumn()
     id: ObjectId = new ObjectId;
 
     @Column()
-    discordId!: string;
-
-    @Column()
-    name!: string;
+    discord!: User;
 
     @Column()
     winCount: number = 0;
