@@ -2,12 +2,16 @@ import { CacheType, EmbedBuilder, Interaction, SlashCommandBuilder, User } from 
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('info')
-        .setDescription('Show info about the user')
+        .setName('정보')
+        .setNameLocalizations({
+            'en-GB': 'info',
+            'en-US': 'info',
+        })
+        .setDescription('유저 정보를 열람합니다.')
         .addUserOption((option) =>
             option
                 .setName('user')
-                .setDescription('The user to show info about')
+                .setDescription('정보를 열람할 대상을 선택합니다.')
                 .setRequired(true)
         ),
     async execute(interaction: Interaction<CacheType>) {
@@ -21,13 +25,13 @@ module.exports = {
                 name: interaction.user.username,
                 iconURL: interaction.user.displayAvatarURL(),
             })
-            .setTitle('Info')
-            .setDescription(`about ${user}`)
+            .setTitle(`${user?.username} 정보`)
+            .setDescription(`${user}`)
             .addFields(
-                { name: 'Rank', value: '4', inline: true },
-                { name: 'Tier', value: 'S+', inline: true },
+                { name: '순위', value: '4', inline: true },
+                { name: '티어', value: 'S+', inline: true },
             )
-            .setFooter({text: 'RoadBuster by @whitekr'})
+            .setFooter({ text: 'RoadBuster by @whitekr' });
 
         await interaction.reply({ embeds: [infoEmbed] });
     },
