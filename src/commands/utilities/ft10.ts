@@ -1,5 +1,4 @@
 import { CacheType, Embed, EmbedBuilder, Interaction, SlashCommandBuilder, SlashCommandNumberOption, SlashCommandUserOption, User } from 'discord.js';
-// import { mods } from '../../config.json';
 
 module.exports = {
     data: new SlashCommandBuilder()

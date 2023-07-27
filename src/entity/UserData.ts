@@ -1,12 +1,12 @@
-import { Column, Entity, ObjectId, ObjectIdColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { Ft10 } from './Ft10';
 import { User } from 'discord.js';
 
 @Entity()
 export class UserData {
 
-    @ObjectIdColumn()
-    id: ObjectId = new ObjectId;
+    @PrimaryGeneratedColumn()
+    id: number;
 
     @Column()
     discord!: User;

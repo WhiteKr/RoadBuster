@@ -18,7 +18,9 @@
       "node_modules/@types"
     ],
     "sourceMap": false,
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false,
   },
   "files": [
     "src/index.ts"
